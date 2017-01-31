@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anil Kaynar</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<style>
+    #result {
+        font-size:xx-large;
+        text-align:center;
+    }
+</style>
+<body>
+<div class="container">
+<h1>Your Number is prime is prime or not</h1>
+</div>
+<div class="jumbotron">
+<h4>Put your number here</h4>
+<form onkeyup="formChanged() onchange="formChanged()">
+    <input type="text" name="saal" onkeyup="formChanged()" onchange="formChanged()"/>
+</form>
+    <br>
+    <b></b><p id="result" display="none" >Falan Filan</p> </b>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+
+    //$("form").submit(function (event) {
+      //  var sayi=event.number.val()
+       // var targ= document.getElementById("result");
+       // targ.innerHTML="Yaz buralara bir şeyler dostum";
+    //});
+</script>
+<script>
+    var k=document.getElementById('result');
+   // k.innerHTML="Değiştirildi";
+</script>
+<script>
+    function formChanged() {
+        var k=document.getElementsByName("saal")[0].value;
+        var target=document.getElementById('result');
+        var numb=+ k;
+        target.innerHTML=k;
+        var flag=1;
+        if(numb==0 || numb==1) {
+            flag=0;
+        }
+        for(var i=Math.floor(numb/2);i>=2;i--) {
+            if(numb%i==0) {
+                flag=0;
+            }
+        }
+        if(flag==1) {
+            target.innerHTML="Prime";
+        }
+        else {
+            target.innerHTML="Not Prime";
+        }
+    }
+</script>
+<script>
+    /* $(document).ready(function(){
+        $(document).click(function() {
+            $('#inputform').submit();
+        });
+
+        $("#inputform").submit(function() {
+            var sayi=$('myfild').val();
+           var rga=document.getElementById('result');
+            rga.innerHTML=sayi;
+            return true;
+        });
+    }); */
+
+</script>
+</html>

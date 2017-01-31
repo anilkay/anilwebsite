@@ -26,4 +26,7 @@ router.get('/bim',function (req,res,next) {
 router.get('/about',function (req,res,next) {
     res.sendfile('views/about.html');
 })
+router.get('/isprime',function (req,res,next) {
+    res.sendfile('views/isitprime.html');
+})
 module.exports = router;
