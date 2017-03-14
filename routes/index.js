@@ -29,4 +29,7 @@ router.get('/about',function (req,res,next) {
 router.get('/isprime',function (req,res,next) {
     res.sendfile('views/isitprime.html');
 })
+router.get('/sendtweet',function (req,res) {
+    res.sendfile('views/twitter.html');
+})
 module.exports = router;

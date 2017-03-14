@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Twtter deneme</title>
+
+    <link rel="canonical"
+          href="/web/tweet-button">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        form {
+            align:left;
+        }
+        input {
+            display:block;
+            margin-bottom: 12px;
+        }
+        .twitter-share-button3 {
+            display: none;
+        }
+        .eklenecek {
+            align:center;
+        }
+        .google {
+            float:inherit;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div style="float:left">
+        <p class="eee">Bu bir Twitter linkidir.</p>
+        <form>
+            <input type="text" class="name2" placeholder="Twit metni">
+            <input type="text" class="url" placeholder="Eklmek İstediğiniz link"/>
+            <input type="text" class="hasteg" placeholder="Hashtagler"/>
+            <input type="text" class="viar" placeholder="Via"/>
+            <input type="text" class="iliski" placeholder="Related"/>
+            <button type="button" class="butonlar btn btn-danger ">Tweet Tuşunu Hazırla</button>
+        </form>
+        <a class="twitter-share-button3"
+           id="sil"
+           href="https://twitter.com/share"
+           data-size="large"
+           data-via="Ericsson A1018"
+           data-url=http://www.cepli.blogspot.com"
+        >
+            Tweet</a>
+        <div class="eklenecek"> </div>
+    </div>
+    <div  class="google hidden-md-down">
+        <h1>İstersen Tweeti atmadan önce bir ara.</h1>
+        <iframe src="https://duckduckgo.com" width="80%" height="600"></iframe>
+    </div>
+</div>
+</body>
+<script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    };
+
+    return t;
+}(document, "script", "twitter-wjs"));</script>
+<script>
+    $(document).ready(function () {
+        $("button").on('click',function () {
+            var ata=$(".name2").val();
+            var hash=$(".hasteg").val();
+            var urll=$(".url").val();
+            var via=$(".viar").val();
+            var relate=$(".iliski").val();
+            $(".eee").text(ata);
+            $('iframe').remove();
+            // Generate new markup
+            if(!via) {
+                var tweetBtn = $('<a></a>')
+                    .addClass('twitter-share-button')
+                    .attr('href', 'http://twitter.com/share')
+                    .attr('data-url', 'http://test.com')
+                    .attr('data-size', 'large')
+                    .attr('data-hashtags', hash)
+                    .attr("data-url", "http://" + urll)
+                    .attr("data-via", via)
+                    .attr("data-related", relate)
+                    .attr('data-text', ata);
+                $('.eklenecek').append(tweetBtn);
+                twttr.widgets.load();
+            }
+            else {
+                var tweetBtn = $('<a></a>')
+                    .addClass('twitter-share-button')
+                    .attr('href', 'http://twitter.com/share')
+                    .attr('data-url', 'http://test.com')
+                    .attr('data-size', 'large')
+                    .attr('data-hashtags', hash)
+                    .attr("data-url", "http://" + urll)
+                    .attr("data-related", relate)
+                    .attr('data-text', ata);
+                $('.eklenecek').append(tweetBtn);
+                twttr.widgets.load();
+            }
+            //var twit=$(".twitter-widget-0");
+            //twit.attr("data-text",ata);
+        });
+    });
+</script>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+</html>
