@@ -37,7 +37,7 @@
         <p class="eee">Bu bir Twitter linkidir.</p>
         <form>
             <input type="text" class="name2" placeholder="Twit metni">
-            <input type="text" class="url" placeholder="Eklmek İstediğiniz link"/>
+            <input type="text" class="url" placeholder="Eklemek İstediğiniz link"/>
             <input type="text" class="hasteg" placeholder="Hashtagler"/>
             <input type="text" class="viar" placeholder="Via"/>
             <input type="text" class="iliski" placeholder="Related"/>
@@ -83,10 +83,14 @@
             var urll=$(".url").val();
             var via=$(".viar").val();
             var relate=$(".iliski").val();
+            function escapeRegExp(str) {
+                return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            }
+            hash=hash.replace(new RegExp(escapeRegExp(" "), 'g'),',');
             $(".eee").text(ata);
             $('iframe').remove();
             // Generate new markup
-            if(!via) {
+            if(via) {
                 var tweetBtn = $('<a></a>')
                     .addClass('twitter-share-button')
                     .attr('href', 'http://twitter.com/share')
@@ -101,17 +105,31 @@
                 twttr.widgets.load();
             }
             else {
-                var tweetBtn = $('<a></a>')
-                    .addClass('twitter-share-button')
-                    .attr('href', 'http://twitter.com/share')
-                    .attr('data-url', 'http://test.com')
-                    .attr('data-size', 'large')
-                    .attr('data-hashtags', hash)
-                    .attr("data-url", "http://" + urll)
-                    .attr("data-related", relate)
-                    .attr('data-text', ata);
-                $('.eklenecek').append(tweetBtn);
-                twttr.widgets.load();
+                var sina=0;
+                if(urll=="http") {
+                    var tweetBtn = $('<a></a>')
+                        .addClass('twitter-share-button')
+                        .attr('href', 'http://twitter.com/share')
+                        .attr('data-size', 'large')
+                        .attr('data-hashtags', hash)
+                        .attr("data-related", relate)
+                        .attr('data-text', ata);
+                    $('.eklenecek').append(tweetBtn);
+                    twttr.widgets.load();
+                    sina++;
+                }
+                if(sina==0) {
+                    var tweetBtn1 = $('<a></a>')
+                        .addClass('twitter-share-button')
+                        .attr('href', 'http://twitter.com/share')
+                        .attr('data-size', 'large')
+                        .attr('data-hashtags', hash)
+                        .attr("data-url", "http://" + urll)
+                        .attr("data-related", relate)
+                        .attr('data-text', ata);
+                    $('.eklenecek').append(tweetBtn1);
+                    twttr.widgets.load();
+                }
             }
             //var twit=$(".twitter-widget-0");
             //twit.attr("data-text",ata);
