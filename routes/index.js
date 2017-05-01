@@ -34,12 +34,12 @@ router.get('/isprime',function (req,res,next) {
 router.get('/sendtweet',function (req,res) {
     res.sendfile('views/twitter.html');
 });
-router.get('/wikipedia:name',function (req,res) {
-    console.log(req.body.name);
-        requistfy.request("en.wikipedia.org/wiki/"+req.body.name, {
+router.get('/wikipedia',function (req,res) {
+        requistfy.request("https://en.wikipedia.org/wiki/Lebron", {
             method: 'GET',
         }).then(function (res2) {
             res.send('<h1>Mevzu Tamam</h1><p></p>'+JSON.stringify(res2.getBody())+"</p>");
+
         });
 });
 module.exports = router;
